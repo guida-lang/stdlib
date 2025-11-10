@@ -1,0 +1,131 @@
+{
+    "type": "package",
+    "name": "guida-lang/stdlib",
+    "summary": "Guida's standard libraries",
+    "license": "BSD-3-Clause",
+    "version": "1.0.0",
+    "exposed-modules": {
+        "Primitives": [
+            "Basics",
+            "String",
+            "Char",
+            "Bitwise",
+            "Tuple"
+        ],
+        "Collections": [
+            "List",
+            "Dict",
+            "Set",
+            "Array"
+        ],
+        "Error Handling": [
+            "Maybe",
+            "Result"
+        ],
+        "Debug": [
+            "Debug"
+        ],
+        "Effects": [
+            "Platform.Cmd",
+            "Platform.Sub",
+            "Platform",
+            "Process",
+            "Task"
+        ],
+        "Browser": [
+            "Browser",
+            "Browser.Dom",
+            "Browser.Events",
+            "Browser.Navigation"
+        ],
+        "Bytes": [
+            "Bytes",
+            "Bytes.Encode",
+            "Bytes.Decode"
+        ],
+        "File": [
+            "File",
+            "File.Select",
+            "File.Download"
+        ],
+        "HTML": [
+            "Html",
+            "Html.Attributes",
+            "Html.Events"
+        ],
+        "HTML Optimize": [
+            "Html.Keyed",
+            "Html.Lazy"
+        ],
+        "JSON": [
+            "Json.Decode",
+            "Json.Encode"
+        ],
+        "Parser": [
+            "Parser",
+            "Parser.Advanced"
+        ],
+        "Random": [
+            "Random"
+        ],
+        "Regex": [
+            "Regex"
+        ],
+        "SVG": [
+            "Svg",
+            "Svg.Attributes",
+            "Svg.Events"
+        ],
+        "SVG Optimize": [
+            "Svg.Keyed",
+            "Svg.Lazy"
+        ],
+        "URL": [
+            "Url",
+            "Url.Builder",
+            "Url.Parser",
+            "Url.Parser.Query"
+        ],
+        "VirtualDom": [
+            "VirtualDom"
+        ],
+        "Benchmark": [
+            "Benchmark",
+            "Benchmark.LowLevel",
+            "Benchmark.Reporting",
+            "Benchmark.Runner",
+            "Benchmark.Status"
+        ],
+        "Linear Algebra": [
+            "Math.Vector2",
+            "Math.Vector3",
+            "Math.Vector4",
+            "Math.Matrix4"
+        ],
+        "Markdown": [
+            "Markdown"
+        ],
+        "Test": [
+            "Test",
+            "Test.Runner",
+            "Test.Runner.Failure",
+            "Test.Distribution",
+            "Expect",
+            "Fuzz",
+            "Test.Html.Event",
+            "Test.Html.Query",
+            "Test.Html.Selector"
+        ],
+        "WebGL": [
+            "WebGL",
+            "WebGL.Settings",
+            "WebGL.Settings.Blend",
+            "WebGL.Settings.DepthTest",
+            "WebGL.Settings.StencilTest",
+            "WebGL.Texture"
+        ]
+    },
+    "guida-version": "1.0.0 <= v < 2.0.0",
+    "dependencies": {},
+    "test-dependencies": {}
+}
