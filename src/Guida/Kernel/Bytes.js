@@ -137,11 +137,11 @@ var _Bytes_read_bytes = F3(function (len, bytes, offset) {
 });
 
 var _Bytes_read_string = F3(function (len, bytes, offset) {
-	var string = '';
+	var string = [];
 	var end = offset + len;
 	for (; offset < end;) {
 		var byte = bytes.getUint8(offset++);
-		string +=
+		string.push(
 			(byte < 128)
 				? String.fromCharCode(byte)
 				:
@@ -162,9 +162,10 @@ var _Bytes_read_string = F3(function (len, bytes, offset) {
 								| bytes.getUint8(offset++) & 0x3F /* 0b00111111 */
 							) - 0x10000
 							, String.fromCharCode(Math.floor(byte / 0x400) + 0xD800, byte % 0x400 + 0xDC00)
-						);
+						)
+		);
 	}
-	return __Utils_Tuple2(offset, string);
+	return __Utils_Tuple2(offset, string.join(''));
 });
 
 var _Bytes_decodeFailure = F2(function () { throw 0; });
