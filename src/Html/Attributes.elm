@@ -11,12 +11,13 @@ module Html.Attributes exposing
     , ismap, usemap, shape, coords
     , src, height, width, alt
     , autoplay, controls, loop, preload, poster, default, kind, srclang
-    , sandbox, srcdoc
+    , sandbox
     , reversed, start
     , align, colspan, rowspan, headers, scope
     , accesskey, contenteditable, contextmenu, dir, draggable, dropzone
     , itemprop, lang, spellcheck, tabindex
     , cite, datetime, pubdate, manifest
+    , srcdoc
     )
 
 {-| Helper functions for HTML attributes. They are organized roughly by
@@ -78,7 +79,7 @@ just search the page for `video` if you want video stuff.
 
 ## iframes
 
-@docs sandbox, srcdoc
+@docs sandbox
 
 
 # Ordered Lists
@@ -102,6 +103,11 @@ Attributes that can be attached to any HTML tag but are less commonly used.
 # Miscellaneous
 
 @docs cite, datetime, pubdate, manifest
+
+
+# Deprecated
+
+@docs srcdoc
 
 -}
 
@@ -459,8 +465,8 @@ sandbox =
     stringProperty "sandbox"
 
 
-{-| An HTML document that will be displayed as the body of an `iframe`. It will
-override the content of the `src` attribute if it has been specified.
+{-| **DEPRECATED.** We would like to remove this in a future release. Please
+prefer web components in cases where this might be useful.
 -}
 srcdoc : String -> Attribute msg
 srcdoc =
@@ -471,8 +477,8 @@ srcdoc =
 -- INPUT
 
 
-{-| Defines the type of a `button`, `input`, `embed`, `object`, `script`,
-`source`, `style`, or `menu`.
+{-| Defines the type of a `button`, `checkbox`, `input`, `embed`, `menu`,
+`object`, `script`, `source`, or `style`.
 -}
 type_ : String -> Attribute msg
 type_ =

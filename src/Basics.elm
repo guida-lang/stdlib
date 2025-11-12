@@ -521,8 +521,6 @@ type Order
 
 
 {-| A “Boolean” value. It can either be `True` or `False`.
-
-
 -}
 type Bool
     = True
