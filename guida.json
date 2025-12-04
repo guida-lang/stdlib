@@ -57,6 +57,9 @@
             "Html.Keyed",
             "Html.Lazy"
         ],
+        "HTTP": [
+            "Http"
+        ],
         "JSON": [
             "Json.Decode",
             "Json.Encode"
@@ -79,6 +82,9 @@
         "SVG Optimize": [
             "Svg.Keyed",
             "Svg.Lazy"
+        ],
+        "Time": [
+            "Time"
         ],
         "URL": [
             "Url",
