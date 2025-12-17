@@ -499,7 +499,7 @@ viewMiniControls config numMsgs =
         , style "right" "2em"
         , style "width" ("calc(42px + " ++ width ++ "ch)")
         , style "height" "36px"
-        , style "background-color" "#1293D8"
+        , style "background-color" "#FE9A00"
         , style "color" "white"
         , style "font-family" "monospace"
         , style "pointer-events" "auto"
@@ -510,7 +510,7 @@ viewMiniControls config numMsgs =
         , style "cursor" "pointer"
         , onClick config.open
         ]
-        [ elmLogo
+        [ guidaLogo
         , span
             [ style "padding-left" "calc(1ch + 6px)"
             , style "padding-right" "1ch"
@@ -519,43 +519,20 @@ viewMiniControls config numMsgs =
         ]
 
 
-elmLogo : Html msg
-elmLogo =
+guidaLogo : Html msg
+guidaLogo =
     V.nodeNS "http://www.w3.org/2000/svg"
         "svg"
-        [ V.attribute "viewBox" "-300 -300 600 600"
+        [ V.attribute "viewBox" "0 0 52.917 52.917"
         , V.attribute "xmlns" "http://www.w3.org/2000/svg"
         , V.attribute "fill" "currentColor"
         , V.attribute "width" "24px"
         , V.attribute "height" "24px"
         ]
         [ V.nodeNS "http://www.w3.org/2000/svg"
-            "g"
-            [ V.attribute "transform" "scale(1 -1)"
+            "path"
+            [ V.attribute "d" "M26.458 37.248c-52.644 0 24.646 37.221-8.178-3.938s-13.734 42.475-2.02-8.849-41.771 15.746 5.66-7.096-38.355-22.841 9.077 0-6.056-44.228 5.659 7.096 30.803-32.31-2.02 8.85c-32.823 41.158 44.466 3.937-8.178 3.937z"
             ]
-            [ viewShape 0 -210 0 "-280,-90 0,190 280,-90"
-            , viewShape -210 0 90 "-280,-90 0,190 280,-90"
-            , viewShape 207 207 45 "-198,-66 0,132 198,-66"
-            , viewShape 150 0 0 "-130,0 0,-130 130,0 0,130"
-            , viewShape -89 239 0 "-191,61 69,61 191,-61 -69,-61"
-            , viewShape 0 106 180 "-130,-44 0,86  130,-44"
-            , viewShape 256 -150 270 "-130,-44 0,86  130,-44"
-            ]
+            []
         ]
 
-
-viewShape : Float -> Float -> Float -> String -> Html msg
-viewShape x y angle coordinates =
-    V.nodeNS "http://www.w3.org/2000/svg"
-        "polygon"
-        [ V.attribute "points" coordinates
-        , V.attribute "transform" <|
-            "translate("
-                ++ String.fromFloat x
-                ++ " "
-                ++ String.fromFloat y
-                ++ ") rotate("
-                ++ String.fromFloat -angle
-                ++ ")"
-        ]
-        []

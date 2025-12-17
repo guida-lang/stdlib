@@ -722,7 +722,7 @@ viewHistorySlider history maybeIndex =
 viewPlayButton : Bool -> Html (Msg msg)
 viewPlayButton playing =
     button
-        [ style "background" "#1293D8"
+        [ style "background" "#FE9A00"
         , style "border" "none"
         , style "color" "white"
         , style "cursor" "pointer"
