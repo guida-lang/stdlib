@@ -72,6 +72,14 @@ function _Debug_toAnsiString(ansi, value) {
 			return _Debug_internalColor(ansi, '<internals>');
 		}
 
+		if (tag === '#N') {
+			var output = [_Debug_toAnsiString(ansi, value.a), _Debug_toAnsiString(ansi, value.b)];
+			for (var k in value.cs) {
+				output.push(_Debug_toAnsiString(ansi, value.cs[k]));
+			}
+			return '(' + output.join(',') + ')';
+		}
+
 		if (tag[0] === '#') {
 			var output = [];
 			for (var k in value) {

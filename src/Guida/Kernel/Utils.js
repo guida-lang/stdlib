@@ -131,6 +131,9 @@ function _Utils_Tuple2__DEBUG(a, b) { return { $: '#2', a: a, b: b }; }
 function _Utils_Tuple3__PROD(a, b, c) { return { a: a, b: b, c: c }; }
 function _Utils_Tuple3__DEBUG(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
 
+function _Utils_TupleN__PROD(a, b, ...cs) { return { a: a, b: b, cs: cs }; }
+function _Utils_TupleN__DEBUG(a, b, ...cs) { return { $: '#N', a: a, b: b, cs: cs }; }
+
 function _Utils_chr__PROD(c) { return c; }
 function _Utils_chr__DEBUG(c) { return new String(c); }
 
