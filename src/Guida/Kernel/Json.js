@@ -103,6 +103,19 @@ function _Json_decodeKeyValuePairs(decoder) {
 	};
 }
 
+var _Json_decodeBytes = _Json_decodePrim(function (value) {
+	if (value instanceof Uint8Array) {
+		return $guida_lang$stdlib$Result$Ok(new DataView(value.buffer, value.byteOffset, value.byteLength));
+	}
+	if (value instanceof ArrayBuffer) {
+		return $guida_lang$stdlib$Result$Ok(new DataView(value));
+	}
+	if (value instanceof DataView) {
+		return $guida_lang$stdlib$Result$Ok(value);
+	}
+	return _Json_expecting('a BYTES value (Uint8Array, ArrayBuffer, or DataView)', value);
+});
+
 function _Json_mapMany(f, decoders) {
 	return {
 		$: __1_MAP,
@@ -390,3 +403,7 @@ function _Json_addEntry(func) {
 }
 
 var _Json_encodeNull = _Json_wrap(null);
+
+var _Json_encodeBytes = function (bytes) {
+	return _Json_wrap(new Uint8Array(bytes.buffer, bytes.byteOffset, bytes.byteLength));
+};
