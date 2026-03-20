@@ -39,7 +39,7 @@ function _MVar_takeMVar(id) {
 	});
 }
 
-function _MVar_putMVar(id, value) {
+var _MVar_putMVar = F2(function (id, value) {
 	return __Scheduler_binding(function (callback) {
 		if (typeof _MVar_mVars[id].value === "undefined") {
 			_MVar_mVars[id].value = value;
@@ -67,7 +67,7 @@ function _MVar_putMVar(id, value) {
 			_MVar_mVars[id].subscribers.push({ action: "put", callback, value });
 		}
 	});
-}
+});
 
 function _MVar_newEmptyMVar(mvar) {
 	return __Scheduler_binding(function (callback) {
