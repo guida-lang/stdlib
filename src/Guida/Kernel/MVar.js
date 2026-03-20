@@ -12,7 +12,7 @@ function _MVar_readMVar(id) {
 		if (typeof _MVar_mVars[id].value === "undefined") {
 			_MVar_mVars[id].subscribers.push({ action: "read", callback });
 		} else {
-			callback(_MVar_mVars[id].value.buffer);
+			callback(__Scheduler_succeed(_MVar_mVars[id].value));
 		}
 	});
 }
@@ -31,9 +31,9 @@ function _MVar_takeMVar(id) {
 			) {
 				const subscriber = _MVar_mVars[id].subscribers.shift();
 				_MVar_mVars[id].value = subscriber.value;
-				callback();
+				callback(__Scheduler_succeed(__Utils_Tuple0));
 			} else {
-				callback(value.buffer);
+				callback(__Scheduler_succeed(value));
 			}
 		}
 	});
@@ -46,7 +46,7 @@ var _MVar_putMVar = F2(function (id, value) {
 
 			_MVar_mVars[id].subscribers = _MVar_mVars[id].subscribers.filter((subscriber) => {
 				if (subscriber.action === "read") {
-					subscriber.callback(value.buffer);
+					subscriber.callback(__Scheduler_succeed(value));
 				}
 
 				return subscriber.action !== "read";
@@ -55,14 +55,14 @@ var _MVar_putMVar = F2(function (id, value) {
 			const subscriber = _MVar_mVars[id].subscribers.shift();
 
 			if (subscriber) {
-				subscriber.callback(value.buffer);
+				subscriber.callback(__Scheduler_succeed(value));
 
 				if (subscriber.action === "take") {
 					_MVar_mVars[id].value = undefined;
 				}
 			}
 
-			callback();
+			callback(__Scheduler_succeed(__Utils_Tuple0));
 		} else {
 			_MVar_mVars[id].subscribers.push({ action: "put", callback, value });
 		}
