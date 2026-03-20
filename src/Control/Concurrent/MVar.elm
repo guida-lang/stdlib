@@ -54,11 +54,15 @@ takeMVar (MVar ref) =
     Guida.Kernel.MVar.takeMVar ref
 
 
+{-| decoder
+-}
 decoder : BD.Decoder (MVar a)
 decoder =
     BD.map MVar (BD.float64 Bytes.BE |> BD.map round)
 
 
+{-| encoder
+-}
 encoder : MVar a -> BE.Encoder
 encoder (MVar ref) =
     BE.float64 Bytes.BE (toFloat ref)
