@@ -1,4 +1,7 @@
-module Control.Concurrent.MVar exposing (MVar, newEmptyMVar, putMVar, readMVar, takeMVar)
+module Control.Concurrent.MVar exposing
+    ( MVar, newEmptyMVar, putMVar, readMVar, takeMVar
+    , decoder, encoder
+    )
 
 {-| Control.Concurrent.MVar
 
@@ -6,6 +9,7 @@ module Control.Concurrent.MVar exposing (MVar, newEmptyMVar, putMVar, readMVar, 
 # TODO
 
 @docs MVar, newEmptyMVar, putMVar, readMVar, takeMVar
+@docs decoder, encoder
 
 -}
 
