@@ -1,6 +1,7 @@
 /*
 
 import Guida.Kernel.Scheduler exposing (binding, succeed)
+import Guida.Kernel.Utils exposing (Tuple0)
 
 */
 
