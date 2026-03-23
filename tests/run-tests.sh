@@ -21,7 +21,7 @@ rm -rf guida-stuff;
 
 # Create a link to the git package
 VERSION=$(node -e "console.log(require('../guida.json').version)")
-CORE_LINK="${GUIDA_HOME}/0.19.1/packages/guida-lang/stdlib/${VERSION}"
+CORE_LINK="${GUIDA_HOME}/1.0.0/packages/guida-lang/stdlib/${VERSION}"
 CORE_GIT_DIR="$(dirname $PWD)"
 
 echo;
