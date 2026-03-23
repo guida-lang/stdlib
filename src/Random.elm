@@ -1,5 +1,5 @@
 effect module Random where { command = MyCmd } exposing
-    ( Generator, generate
+    ( Generator, generate, task
     , int, float, uniform, weighted, constant
     , pair, list
     , map, map2, map3, map4, map5
@@ -19,7 +19,7 @@ by M. E. O'Neil. It is not cryptographically secure.
 
 # Generators
 
-@docs Generator, generate
+@docs Generator, generate, task
 
 
 # Primitives
@@ -965,6 +965,18 @@ dread going back to `Math.random()` in JavaScript.
 generate : (a -> msg) -> Generator a -> Cmd msg
 generate tagger generator =
     command (Generate (map tagger generator))
+
+
+{-| Create a task that produces a random value.
+
+This is useful when you want to combine random generation with other tasks,
+such as [`Time.now`](Time#now).
+-}
+task : Generator a -> Task Never a
+task generator =
+    Task.map
+        (\seed -> Tuple.first (step generator seed))
+        (Task.map (Time.posixToMillis >> initialSeed) Time.now)
 
 
 type MyCmd msg
