@@ -132,6 +132,10 @@
         ],
         "Concurrency": [
             "Control.Concurrent.MVar"
+        ],
+        "System": [
+            "System.Directory",
+            "System.Environment"
         ]
     },
     "guida-version": "1.0.0 <= v < 2.0.0",
