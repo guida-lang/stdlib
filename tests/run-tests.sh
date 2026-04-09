@@ -37,4 +37,4 @@ echo;
 echo "running tests ...";
 echo;
 
-guida test "$@";
+../../compiler-master/bin/index.js test "$@";

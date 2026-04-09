@@ -135,7 +135,11 @@
         ],
         "System": [
             "System.Directory",
-            "System.Environment"
+            "System.Environment",
+            "System.Exit",
+            "System.IO",
+            "System.Misc",
+            "System.Process"
         ]
     },
     "guida-version": "1.0.0 <= v < 2.0.0",

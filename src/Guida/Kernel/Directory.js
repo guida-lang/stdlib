@@ -1,5 +1,6 @@
 /*
 
+import Guida.Kernel.Filesystem exposing (fs)
 import Guida.Kernel.List exposing (fromArray)
 import Guida.Kernel.Scheduler exposing (binding, succeed)
 import Guida.Kernel.Utils exposing (Tuple0)
@@ -7,14 +8,13 @@ import Maybe exposing (Just, Nothing)
 
 */
 
-const fs = require("node:fs");
 const os = require("node:os");
 const resolve = require("node:path").resolve;
 const which = require("which");
 
 var _Directory_createDirectoryIfMissing = F2(function (parents, dir) {
     return __Scheduler_binding(function (callback) {
-        fs.mkdir(dir, { recursive: parents }, (err) => {
+        __Filesystem_fs.mkdir(dir, { recursive: parents }, (err) => {
             if (err) throw err;
             callback(__Scheduler_succeed(__Utils_Tuple0));
         });
@@ -23,7 +23,7 @@ var _Directory_createDirectoryIfMissing = F2(function (parents, dir) {
 
 function _Directory_removeDirectoryRecursive(dir) {
     return __Scheduler_binding(function (callback) {
-        fs.rm(dir, { recursive: true, force: true }, (err) => {
+        __Filesystem_fs.rm(dir, { recursive: true, force: true }, (err) => {
             if (err) throw err;
             callback(__Scheduler_succeed(__Utils_Tuple0));
         });
@@ -32,7 +32,7 @@ function _Directory_removeDirectoryRecursive(dir) {
 
 function _Directory_listDirectory(dir) {
     return __Scheduler_binding(function (callback) {
-        fs.readdir(dir, { recursive: false }, (err, files) => {
+        __Filesystem_fs.readdir(dir, { recursive: false }, (err, files) => {
             if (err) throw err;
             callback(__Scheduler_succeed(__List_fromArray(files)));
         });
@@ -79,7 +79,7 @@ function _Directory_canonicalizePath(path) {
 
 function _Directory_doesFileExist(filename) {
     return __Scheduler_binding(function (callback) {
-        fs.stat(filename, (err, stats) => {
+        __Filesystem_fs.stat(filename, (err, stats) => {
             callback(__Scheduler_succeed(!err && stats.isFile()));
         });
     });
@@ -87,7 +87,7 @@ function _Directory_doesFileExist(filename) {
 
 function _Directory_doesDirectoryExist(path) {
     return __Scheduler_binding(function (callback) {
-        fs.stat(path, (err, stats) => {
+        __Filesystem_fs.stat(path, (err, stats) => {
             callback(__Scheduler_succeed(!err && stats.isDirectory()));
         });
     });
@@ -102,7 +102,7 @@ function _Directory_findExecutable(filename) {
 
 function _Directory_getModificationTime(filename) {
     return __Scheduler_binding(function (callback) {
-        fs.stat(filename, (err, stats) => {
+        __Filesystem_fs.stat(filename, (err, stats) => {
             if (err) throw err;
             callback(__Scheduler_succeed(parseInt(stats.mtimeMs, 10)));
         });
