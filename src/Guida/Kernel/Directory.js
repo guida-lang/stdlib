@@ -9,13 +9,12 @@ import Maybe exposing (Just, Nothing)
 */
 
 const os = require("node:os");
-const resolve = require("node:path").resolve;
+const { dirname, resolve } = require("node:path");
 const which = require("which");
 
 var _Directory_createDirectoryIfMissing = F2(function (parents, dir) {
     return __Scheduler_binding(function (callback) {
-        __Filesystem_fs.mkdir(dir, { recursive: parents }, (err) => {
-            if (err) throw err;
+        __Filesystem_fs.mkdir(dir, { recursive: parents }, (_err) => {
             callback(__Scheduler_succeed(__Utils_Tuple0));
         });
     });
@@ -111,6 +110,6 @@ function _Directory_getModificationTime(filename) {
 
 function _Directory_getDirname() {
     return __Scheduler_binding(function (callback) {
-        callback(__Scheduler_succeed(__dirname));
+        callback(__Scheduler_succeed(dirname(require.main.filename)));
     });
 }

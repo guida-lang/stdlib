@@ -1,5 +1,7 @@
 /*
 
+import Guida.Kernel.Filesystem exposing (fs)
+import Guida.Kernel.List exposing (toArray)
 import Guida.Kernel.Scheduler exposing (binding, succeed)
 import Guida.Kernel.Utils exposing (Tuple0, Tuple2)
 
@@ -18,7 +20,7 @@ var _SystemProcess_withCreateProcess = F5(function (cmd, args, stdin, stdout, st
 
             nextCounter += 1;
 
-            fs.createReadStream(path)
+            __Filesystem_fs.createReadStream(path)
                 .on("data", (chunk) => {
                     processes[nextCounter].stdin.write(chunk);
                 })
@@ -26,11 +28,27 @@ var _SystemProcess_withCreateProcess = F5(function (cmd, args, stdin, stdout, st
                     processes[nextCounter].stdin.end();
                 });
 
-            processes[nextCounter] = child_process.spawn(cmd, args, { stdio: [stdin, stdout, stderr,] });
+            processes[nextCounter] = child_process.spawn(cmd, __List_toArray(args), {
+                stdio: [stdStreamToString(stdin), stdStreamToString(stdout), stdStreamToString(stderr)]
+            });
+
             callback(__Scheduler_succeed(__Utils_Tuple2(fd, nextCounter)));
         });
     });
 });
+
+function stdStreamToString(stdStream) {
+    switch (stdStream.$) {
+        case "Inherit":
+            return "inherit";
+
+        case "CreatePipe":
+            return "pipe";
+
+        case "NoStream":
+            return "ignore";
+    }
+}
 
 function _SystemProcess_waitForProcess(ph) {
     return __Scheduler_binding(function (callback) {

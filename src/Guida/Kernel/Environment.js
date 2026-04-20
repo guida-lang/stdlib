@@ -6,6 +6,8 @@ import Maybe exposing (Just, Nothing)
 
 */
 
+const path = require("node:path");
+
 function _Environment_getArgs() {
     return __Scheduler_binding(function (callback) {
         callback(__Scheduler_succeed(__List_fromArray(process.argv.slice(2))));
@@ -14,7 +16,7 @@ function _Environment_getArgs() {
 
 function _Environment_getProgName() {
     return __Scheduler_binding(function (callback) {
-        callback(__Scheduler_succeed(path.basename(__filename)));
+        callback(__Scheduler_succeed("guida"));
     });
 }
 
