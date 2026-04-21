@@ -13,6 +13,7 @@ const http = require("node:http");
 const https = require("node:https");
 const crypto = require("node:crypto");
 const AdmZip = require("adm-zip");
+const { lock, unlock } = require("os-lock");
 
 var _Misc_writeString = F2(function (path, data) {
     return __Scheduler_binding(function (callback) {
@@ -136,3 +137,41 @@ var _Misc_httpUpload = F3(function (urlStr, headers, parts) {
         });
     });
 });
+
+function _Misc_binaryDecodeFileOrFail(filename) {
+    return __Scheduler_binding(function (callback) {
+        __Filesystem_fs.readFile(filename, (err, data) => {
+            if (err) throw err;
+            callback(__Scheduler_succeed(new DataView(data.buffer)));
+        });
+    });
+}
+
+var _Misc_binaryEncodeFile = F2(function (filename, bytes) {
+    return __Scheduler_binding(function (callback) {
+        __Filesystem_fs.writeFile(filename, bytes, (err) => {
+            if (err) throw err;
+            callback(__Scheduler_succeed(__Utils_Tuple0));
+        });
+    });
+});
+
+function _Misc_lockFile(path) {
+    return __Scheduler_binding(function (callback) {
+        __Filesystem_fs.open(path, "a+", async (err, fd) => {
+            if (err) throw err;
+            await lock(fd, { exclusive: true });
+            callback(__Scheduler_succeed(__Utils_Tuple0));
+        });
+    });
+}
+
+function _Misc_unlockFile(path) {
+    return __Scheduler_binding(function (callback) {
+        __Filesystem_fs.open(path, async (err, fd) => {
+            if (err) throw err;
+            await unlock(fd);
+            callback(__Scheduler_succeed(__Utils_Tuple0));
+        });
+    });
+}

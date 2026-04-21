@@ -5,6 +5,8 @@ module System.Misc exposing
     , HttpStatus(..)
     , MultiPart
     , SomeException(..)
+    , binaryDecodeFileOrFail
+    , binaryEncodeFile
     , filePart
     , getArchive
     , httpHLocation
@@ -13,15 +15,18 @@ module System.Misc exposing
     , httpStatusCode
     , httpUpload
     , jsonPart
+    , lockFile
     , readString
     , replGetInputLine
     , stringPart
+    , unlockFile
     , writeString
     )
 
 {-| Miscellaneous functions that don't fit anywhere else.
 -}
 
+import Bytes exposing (Bytes)
 import Guida.Kernel.Misc
 import Json.Encode as Encode
 import Task exposing (Task)
@@ -149,3 +154,31 @@ type HttpStatus
 
 type SomeException
     = SomeException
+
+
+
+-- Data.Binary
+
+
+binaryDecodeFileOrFail : String -> Task Never Bytes
+binaryDecodeFileOrFail filename =
+    Guida.Kernel.Misc.binaryDecodeFileOrFail filename
+
+
+binaryEncodeFile : String -> Bytes -> Task Never ()
+binaryEncodeFile filename bytes =
+    Guida.Kernel.Misc.binaryEncodeFile filename bytes
+
+
+
+-- System.FileLock
+
+
+lockFile : String -> Task Never ()
+lockFile path =
+    Guida.Kernel.Misc.lockFile path
+
+
+unlockFile : String -> Task Never ()
+unlockFile path =
+    Guida.Kernel.Misc.unlockFile path
